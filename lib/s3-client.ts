@@ -58,11 +58,10 @@ export class S3Client {
       ]
 
       // Filter by prefix if provided
-      const filteredFiles = this.credentials.prefix
-        ? mockFiles.filter((file) => file.key.startsWith(this.credentials.prefix!))
-        : mockFiles
-
-      return filteredFiles
+        return this.credentials.prefix
+              ? mockFiles.filter((file) => file.key.startsWith(this.credentials.prefix!))
+              : mockFiles;
+              
     } catch (error) {
       throw new Error("Failed to list S3 objects")
     }
