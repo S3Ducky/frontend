@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+
+    /* Transition timing */
+    --theme-transition-duration: 0.5s;
+    --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 210 40% 98%;
+    --card: 0 0% 0%;
+    --card-foreground: 210 40% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 262 83% 14%;
+    --muted-foreground: 215.4 16.3% 65%;
+    --accent: 262 83% 14%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 262 83% 14%;
+    --input: 262 83% 14%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Smooth transitions for all elements */
+  *,
+  *::before,
+  *::after {
+    transition:
+      background-color var(--theme-transition-duration) var(--theme-transition-timing),
+      border-color var(--theme-transition-duration) var(--theme-transition-timing),
+      color var(--theme-transition-duration) var(--theme-transition-timing),
+      fill var(--theme-transition-duration) var(--theme-transition-timing),
+      stroke var(--theme-transition-duration) var(--theme-transition-timing),
+      box-shadow var(--theme-transition-duration) var(--theme-transition-timing),
+      backdrop-filter var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: background var(--theme-transition-duration) var(--theme-transition-timing), color
+      var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  /* Custom dark mode background with smooth transition */
+  .dark body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+    background-attachment: fixed;
+  }
+
+  .dark .bg-background {
+    background: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .dark .bg-muted\/30 {
+    background: rgba(83, 52, 131, 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  .dark .bg-card {
+    background: rgba(22, 33, 62, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(83, 52, 131, 0.3);
+  }
+
+  /* Smooth transitions for specific components */
+  .theme-transition {
+    transition: all var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  /* Enhanced transitions for interactive elements */
+  button,
+  a,
+  .card,
+  .badge {
+    transition:
+      background-color var(--theme-transition-duration) var(--theme-transition-timing),
+      border-color var(--theme-transition-duration) var(--theme-transition-timing),
+      color var(--theme-transition-duration) var(--theme-transition-timing),
+      box-shadow var(--theme-transition-duration) var(--theme-transition-timing),
+      transform 0.2s ease;
+  }
+
+  /* Gradient transitions */
+  .gradient-transition {
+    background-size: 200% 200%;
+    transition: background-position var(--theme-transition-duration) var(--theme-transition-timing), background-color
+      var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  /* Icon transitions */
+  svg {
+    transition: color var(--theme-transition-duration) var(--theme-transition-timing), fill
+      var(--theme-transition-duration) var(--theme-transition-timing), stroke var(--theme-transition-duration)
+      var(--theme-transition-timing);
+  }
+
+  /* Prevent transitions on page load */
+  .preload * {
+    transition: none !important;
+  }
+}
