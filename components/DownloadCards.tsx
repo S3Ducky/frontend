@@ -103,16 +103,8 @@ function DownloadCard({
   )
 }
 
-export default function DownloadCards() {
-  const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => { setMounted(true) }, [])
-  if (!mounted) return null
-
-  const BASE_URL = "https://github.com/S3Ducky/S3ducky/releases/download";
-  const RELEASE_VERSION = process.env.NEXT_PUBLIC_RELEASE_VERSION || 'v0.0.1';
-  // Data for each OS card
-  const cards = [
+function getCards(theme: string | undefined, RELEASE_VERSION: string, BASE_URL: string) {
+  return [
     {
       name: "Windows",
       logo: <img src="/windows.png" alt="Windows Logo" className="w-20 h-20 object-contain" />,
@@ -170,6 +162,17 @@ export default function DownloadCards() {
       ]
     }
   ]
+}
+
+export default function DownloadCards() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
+  if (!mounted) return null
+
+  const BASE_URL = "https://github.com/S3Ducky/S3ducky/releases/download";
+  const RELEASE_VERSION = process.env.NEXT_PUBLIC_RELEASE_VERSION || 'v0.0.1';
+  const cards = getCards(theme, RELEASE_VERSION, BASE_URL);
 
   return (
     <section id="download" className="py-20 px-4 theme-transition">
