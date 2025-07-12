@@ -3,6 +3,48 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Download } from "lucide-react"
 import React, { useState, useEffect } from "react"
+import clsx from "clsx"
+
+// Helper for button className
+function getButtonClass({
+  specialStyle,
+  variant,
+  theme,
+  cardName,
+  special,
+  label
+}: {
+  specialStyle?: boolean
+  variant?: "default" | "outline"
+  theme?: string
+  cardName: string
+  special?: boolean
+  label: string
+}) {
+  if (specialStyle) {
+    return theme === "dark"
+      ? "w-full gradient-transition bg-gray-200 text-gray-900 hover:bg-white"
+      : "w-full gradient-transition bg-gradient-to-r from-gray-700 to-gray-500 hover:from-gray-800 hover:to-gray-600"
+  }
+  if (variant === "outline") {
+    return clsx(
+      "w-full bg-transparent theme-transition transition-all duration-300 hover:text-white",
+      cardName === "Windows" && "hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600",
+      cardName === "Linux" && "hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600",
+      special && "hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-500"
+    )
+  }
+  if (special && !specialStyle) {
+    return "w-full gradient-transition bg-gradient-to-r from-gray-700 to-gray-500 hover:from-gray-800 hover:to-gray-600"
+  }
+  if (label.includes(".exe")) {
+    return "w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 gradient-transition"
+  }
+  if (label.includes(".AppImage")) {
+    return "w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 gradient-transition"
+  }
+  return "w-full"
+}
 
 // DownloadCard subcomponent
 function DownloadCard({
@@ -39,29 +81,14 @@ function DownloadCard({
               key={i}
               size="lg"
               variant={dl.variant || "default"}
-              className={
-                dl.specialStyle
-                  ? (theme === "dark"
-                      ? "w-full gradient-transition bg-gray-200 text-gray-900 hover:bg-white"
-                      : "w-full gradient-transition bg-gradient-to-r from-gray-700 to-gray-500 hover:from-gray-800 hover:to-gray-600")
-                  : dl.variant === "outline"
-                  ? `w-full bg-transparent theme-transition transition-all duration-300 hover:text-white ${
-                      name === "Windows"
-                        ? "hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600"
-                        : name === "Linux"
-                        ? "hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600"
-                        : special
-                        ? "hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-500"
-                        : ""
-                    }`
-                  : special && !dl.specialStyle
-                  ? "w-full gradient-transition bg-gradient-to-r from-gray-700 to-gray-500 hover:from-gray-800 hover:to-gray-600"
-                  : dl.label.includes(".exe")
-                  ? "w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 gradient-transition"
-                  : dl.label.includes(".AppImage")
-                  ? "w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 gradient-transition"
-                  : "w-full"
-              }
+              className={getButtonClass({
+                specialStyle: dl.specialStyle,
+                variant: dl.variant,
+                theme,
+                cardName: name,
+                special,
+                label: dl.label
+              })}
               asChild
             >
               <a href={dl.href}>
@@ -82,6 +109,8 @@ export default function DownloadCards() {
   useEffect(() => { setMounted(true) }, [])
   if (!mounted) return null
 
+  const BASE_URL = "https://github.com/S3Ducky/S3ducky/releases/download";
+  const RELEASE_VERSION = process.env.NEXT_PUBLIC_RELEASE_VERSION || 'v0.0.1';
   // Data for each OS card
   const cards = [
     {
@@ -91,11 +120,11 @@ export default function DownloadCards() {
       downloads: [
         {
           label: "Download .exe",
-          href: "https://github.com/S3Ducky/S3ducky/releases/download/v0.0.1/S3Ducky-Windows.exe"
+          href: `${BASE_URL}/${RELEASE_VERSION}/S3Ducky-Windows.exe`
         },
         {
           label: "Download .zip",
-          href: "https://github.com/S3Ducky/S3ducky/releases/download/v0.0.1/S3Ducky-Windows.zip",
+          href: `${BASE_URL}/${RELEASE_VERSION}/S3Ducky-Windows.zip`,
           variant: "outline" as const
         }
       ]
@@ -113,12 +142,12 @@ export default function DownloadCards() {
       downloads: [
         {
           label: "Download .dmg",
-          href: "https://github.com/S3Ducky/S3ducky/releases/download/v0.0.1/S3Ducky-macOS",
+          href: `${BASE_URL}/${RELEASE_VERSION}/S3Ducky-macOS`,
           specialStyle: true
         },
         {
           label: "Download .zip",
-          href: "https://github.com/S3Ducky/S3ducky/releases/download/v0.0.1/S3Ducky-macOS.zip",
+          href: `${BASE_URL}/${RELEASE_VERSION}/S3Ducky-macOS.zip`,
           variant: "outline" as const
         }
       ],
@@ -131,11 +160,11 @@ export default function DownloadCards() {
       downloads: [
         {
           label: "Download .AppImage",
-          href: "https://github.com/S3Ducky/S3ducky/releases/download/v0.0.1/S3Ducky-Linux"
+          href: `${BASE_URL}/${RELEASE_VERSION}/S3Ducky-Linux`
         },
         {
           label: "Download .zip",
-          href: "https://github.com/S3Ducky/S3ducky/releases/download/v0.0.1/S3Ducky-Linux.tar.gz",
+          href: `${BASE_URL}/${RELEASE_VERSION}/S3Ducky-Linux.tar.gz`,
           variant: "outline" as const
         }
       ]
