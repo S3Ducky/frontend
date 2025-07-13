@@ -19,6 +19,7 @@ import {
   ChevronDown,
 } from "lucide-react"
 import { useTheme } from "next-themes"
+import DownloadCards from "@/components/DownloadCards"
 
 export default function S3DuckyLanding() {
   const { theme, setTheme } = useTheme()
@@ -337,40 +338,7 @@ export default function S3DuckyLanding() {
       </section>
 
       {/* Download Section */}
-      <section id="download" className="py-20 px-4 theme-transition">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 theme-transition">Ready to Get Started?</h2>
-          <p className="text-lg text-muted-foreground mb-8 theme-transition">
-            Download S3Ducky now and start managing your S3 buckets with ease
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg gradient-transition"
-              asChild
-            >
-              <a href="https://github.com/yourusername/s3ducky/releases/download/v1.0.0/S3Ducky-v1.0.0.exe">
-                <Download className="w-5 h-5 mr-2" />
-                Download for Windows (.exe)
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-lg px-8 py-6 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all duration-300 bg-transparent theme-transition"
-              asChild
-            >
-              <a href="https://github.com/yourusername/s3ducky/releases/download/v1.0.0/S3Ducky-v1.0.0.zip">
-                <Download className="w-5 h-5 mr-2" />
-                Download Source (.zip)
-              </a>
-            </Button>
-          </div>
-          <p className="text-sm text-muted-foreground mt-4 theme-transition">
-            Requires Windows 10 or later • Free and open source under MIT License
-          </p>
-        </div>
-      </section>
+      <DownloadCards />
 
       {/* Footer */}
       <footer className="border-t bg-muted/30 py-12 px-4 theme-transition">
