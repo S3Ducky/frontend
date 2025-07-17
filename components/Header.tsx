@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Github, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
@@ -25,7 +26,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
-            <img src="/S3DuckyLogo.png" alt="S3Ducky Logo" className="w-7 h-7 object-contain" />
+            <Image src="/S3DuckyLogo.png" alt="S3Ducky Logo" width={28} height={28} className="object-contain" />
           </div>
           <span className="text-xl font-bold theme-transition">S3Ducky</span>
         </div>
