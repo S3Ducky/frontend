@@ -15,7 +15,8 @@ export default function Header() {
   }, [])
 
   const handleThemeToggle = () => {
-    const newTheme = theme === "dark" ? "light" : "dark"
+    const currentTheme = theme ?? "dark"
+    const newTheme = currentTheme === "dark" ? "light" : "dark"
     setTheme(newTheme)
   }
 
