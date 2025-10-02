@@ -47,7 +47,7 @@ export default function Header() {
             <span className="sr-only">Toggle theme</span>
           </Button>
           <Button variant="outline" asChild className="theme-transition bg-transparent">
-            <a href="https://github.com/yourusername/s3ducky" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/s3ducky" target="_blank" rel="noopener noreferrer">
               <Github className="w-4 h-4 mr-2" />
               GitHub
             </a>

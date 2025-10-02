@@ -411,7 +411,7 @@ export default function S3DuckyLanding() {
             <p className="text-sm text-muted-foreground theme-transition">© 2025 S3Ducky — Version 1.1.1</p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0">
               <a
-                href="https://github.com/yourusername/s3ducky"
+                href="https://github.com/s3ducky"
                 className="text-muted-foreground hover:text-foreground transition-colors theme-transition"
               >
                 <Github className="w-5 h-5" />
