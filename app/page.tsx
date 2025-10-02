@@ -408,7 +408,7 @@ export default function S3DuckyLanding() {
             </div>
           </div>
           <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center theme-transition">
-            <p className="text-sm text-muted-foreground theme-transition">© 2025 S3Ducky — Version 1.0.0</p>
+            <p className="text-sm text-muted-foreground theme-transition">© 2025 S3Ducky — Version 1.1.1</p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0">
               <a
                 href="https://github.com/yourusername/s3ducky"
