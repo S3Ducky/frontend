@@ -318,9 +318,6 @@ export default function S3DuckyLanding() {
                 </div>
                 <span className="font-bold theme-transition">S3Ducky</span>
               </div>
-              <p className="text-sm text-muted-foreground theme-transition">
-                Modern S3 bucket management for Windows developers
-              </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4 theme-transition">Resources</h4>
