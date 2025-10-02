@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import DownloadCards from "@/components/DownloadCards"
+import Header from "@/components/Header"
 
 export default function S3DuckyLanding() {
   const { theme, setTheme } = useTheme()
@@ -111,46 +112,12 @@ export default function S3DuckyLanding() {
   return (
     <div className="min-h-screen bg-background theme-transition">
       {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 theme-transition">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center gradient-transition">
-              <span className="text-white font-bold text-sm">S3</span>
-            </div>
-            <span className="text-xl font-bold theme-transition">S3Ducky</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleThemeToggle}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-              className="relative theme-transition"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-4 w-4 transition-all duration-300" />
-              ) : (
-                <Moon className="h-4 w-4 transition-all duration-300" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            <Button variant="outline" asChild className="theme-transition bg-transparent">
-              <a href="https://github.com/yourusername/s3ducky" target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4 mr-2" />
-                GitHub
-              </a>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="py-20 px-4 theme-transition">
         <div className="container mx-auto text-center max-w-4xl">
           <div className="mb-8">
-            <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl shadow-2xl flex items-center justify-center gradient-transition">
-              <span className="text-white font-bold text-4xl">S3</span>
-            </div>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent gradient-transition">
             S3Ducky
