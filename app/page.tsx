@@ -295,7 +295,7 @@ export default function S3DuckyLanding() {
               asChild
               className="hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all duration-300 bg-transparent theme-transition"
             >
-              <a href="https://github.com/yourusername/s3ducky/releases" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/S3Ducky/frontend/releases" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View All Releases
               </a>
